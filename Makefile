@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I includes -I lib/libft/includes
+CFLAGS = -Wall -Wextra -Werror -I includes -I lib/libft
 
 SOURCES = src/ft_printf.c
 OBJECTS = $(SOURCES:.c=.o)
@@ -13,7 +13,7 @@ LIBFT_DIR = lib/libft
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT)
-	ar rcs $(NAME) $(OBJECTS) $(LIBFT)
+	ar -rc $(NAME) $(OBJECTS) $(LIBFT)
 
 clean:
 	rm -f $(OBJECTS)

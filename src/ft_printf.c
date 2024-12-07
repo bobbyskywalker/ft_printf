@@ -19,7 +19,7 @@
 static void	cnv(const char *format, va_list args)
 {
 	if (*format == 'c')
-		ft_putchar_fd(va_arg(args, char), 1);
+		ft_putchar_fd(va_arg(args, int), 1);
 	else if (*format == 's')
 		ft_putstr_fd(va_arg(args, char *), 1);
 	else if (*format == 'p')

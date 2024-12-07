@@ -23,7 +23,7 @@
 
 // SECTION: FUNCS
 int		ft_printf(const char *format, ...);
-void	print_hex(char *arg, int case_p);
+void	print_hex(int arg, int case_p);
 void	print_address(char *arg);
 
 #endif
