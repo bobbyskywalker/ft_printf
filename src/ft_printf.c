@@ -30,9 +30,9 @@ static void	cnv(const char *format, va_list args)
 		// putnbr modify to print unsigned only
 		ft_putnbr_fd(va_arg(args, unsigned int), 1);
 	else if (*format == 'x')
-		return ;
+		print_hex(va_arg(args, unsigned int), 1);
 	else if (*format == 'X')
-		return ;
+		print_hex(va_arg(args, unsigned int), 2);
 	else if (*format == '%')
 		ft_putchar_fd('%', 1);
 	else
@@ -59,4 +59,16 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(arg_list);
 	return (0);
+}
+// debug compilation
+// cc ft_printf.c print_hex.c ../lib/libft/libft.a -o tescik
+int main()
+{
+	ft_printf("single char: %c\n", 'A');
+	ft_printf("string: %s\n", "Forty-two");
+	ft_printf("hexadecimal lowercase: %x\n", 42);
+	ft_printf("hexadecimal uppercase: %x\n", 42);
+	ft_printf("decimal: %d\n", 42);
+	ft_printf("integer: %u\n", 42);
+	return 0;
 }
