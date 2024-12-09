@@ -13,37 +13,36 @@
 #include "../includes/printf.h"
 #include "../lib/libft/libft.h"
 
-// TODO: 1.to hex conversion, to unsigned int conversion,
-// 2.to hex address conversion,
-// 3.error handling
-static void	cnv(const char *format, va_list args)
+// TODO: putnbr & unsigned num func with printed chars return value
+// error handling
+static void	cnv(const char *format, int *printed_chars, va_list args)
 {
 	if (*format == 'c')
-		ft_putchar_fd(va_arg(args, int), 1);
+		*printed_chars += print_char(va_arg(args, int));
 	else if (*format == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		*printed_chars += print_str(va_arg(args, char *));
 	else if (*format == 'p')
-		return ;
+		*printed_chars += print_ptr(va_arg(args, uintptr_t));
 	else if (*format == 'd' || *format == 'i')
 		ft_putnbr_fd(va_arg(args, int), 1);
 	else if (*format == 'u')
 		// putnbr modify to print unsigned only
 		ft_putnbr_fd(va_arg(args, unsigned int), 1);
 	else if (*format == 'x')
-		print_hex(va_arg(args, unsigned int), 1);
+		*printed_chars += print_hex(va_arg(args, unsigned int), 1);
 	else if (*format == 'X')
-		print_hex(va_arg(args, unsigned int), 2);
+		*printed_chars += print_hex(va_arg(args, unsigned int), 2);
 	else if (*format == '%')
-		ft_putchar_fd('%', 1);
-	else
-		return ;
+		*printed_chars += print_char('%');
 }
 
 // retval: no_read chars OR EOF on error
 int	ft_printf(const char *format, ...)
 {
 	va_list	arg_list;
+	int	printed_chars;
 
+	printed_chars = 0;
 	va_start(arg_list, format);
 	while (*format)
 	{
@@ -51,17 +50,20 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			if (ft_strchr("cspdiuxX%", format[0]))
-				cnv(format, arg_list);
+				cnv(format, &printed_chars, arg_list);
 		}
 		else
-			ft_putchar_fd(*format, 1);
+		{
+			print_char(*format);
+			printed_chars++;
+		}
 		format++;
 	}
 	va_end(arg_list);
-	return (0);
+	return (printed_chars);
 }
 // debug compilation
-// cc ft_printf.c print_hex.c ../lib/libft/libft.a -o tescik
+// cc -Wall -Wextra -Werror ft_printf.c print_hex.c print_ptr.c  ../lib/libft/libft.a -o tescik
 int main()
 {
 	ft_printf("single char: %c\n", 'A');
@@ -70,5 +72,6 @@ int main()
 	ft_printf("hexadecimal uppercase: %x\n", 42);
 	ft_printf("decimal: %d\n", 42);
 	ft_printf("integer: %u\n", 42);
+	ft_printf("pointer: %p\n", 42);
 	return 0;
 }

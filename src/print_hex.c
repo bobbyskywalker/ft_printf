@@ -52,7 +52,7 @@ static int calc_hexstr(char *res, int arg, int case_p)
 }
 
 // case param: 1 - lowercase, 2 - uppercase
-void	print_hex(int arg, int case_p)
+int	print_hex(int arg, int case_p)
 {
 	char	*res;
 	int		i;
@@ -60,12 +60,12 @@ void	print_hex(int arg, int case_p)
 	if (!arg)
 	{
 		write(1, "0", 1);
-		return ;
+		return 1;
 	} 
 	else if (arg == INT_MIN)
 	{
 		write(1, "-2147483648", 11);
-		return ;
+		return 11;
 	}
 	if (arg < 0)
 	{
@@ -74,9 +74,10 @@ void	print_hex(int arg, int case_p)
 	}
 	res = ft_calloc(hexstr_length(arg) + 1, sizeof(char));
 	if (!res)
-		return ;
+		return (-1);
 	i = calc_hexstr(res, arg, case_p);
 	while (i > 0)
 		write(1, &res[--i], 1);
 	free(res);
+	return (hexstr_length(arg));
 }

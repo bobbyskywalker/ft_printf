@@ -15,15 +15,19 @@
 
 // SECTION: INCLUDES
 # include "../lib/libft/libft.h"
+# include <assert.h>
 # include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 // SECTION: FUNCS
 int		ft_printf(const char *format, ...);
-void	print_hex(int arg, int case_p);
-void	print_address(char *arg);
+int     print_char(char c);
+int     print_str(char *str);
+int     print_hex(int arg, int case_p);
+int     print_ptr(uintptr_t ptr);
 
 #endif
