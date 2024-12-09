@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarbacz <agarbacz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -29,5 +29,7 @@ int     print_char(char c);
 int     print_str(char *str);
 int     print_hex(int arg, int case_p);
 int     print_ptr(uintptr_t ptr);
+int     print_int(int nb);
+int     print_uint(unsigned int nb);
 
 #endif

@@ -1,8 +1,8 @@
 NAME = libftprintf.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I includes -I lib/libft
+CFLAGS = -Wall -Wextra -Werror -Iincludes -I lib/libft
 
-SOURCES = src/ft_printf.c
+SOURCES = src/ft_printf.c src/print_hex.c src/print_nums.c src/print_ptr.c src/print_str.c
 OBJECTS = $(SOURCES:.c=.o)
 
 LIBFT_MAKEFILE = lib/libft/Makefile

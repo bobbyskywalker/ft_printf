@@ -28,12 +28,3 @@ int print_ptr(uintptr_t ptr)
     }
     return (len);
 }
-
-// int main()
-// {
-//     int *ptr;
-//     int a = 16;
-//     ptr = &a;
-//     printf("%p", ptr);
-//     return 0;
-// }

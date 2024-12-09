@@ -13,8 +13,9 @@
 #include "../includes/printf.h"
 #include "../lib/libft/libft.h"
 
-// TODO: putnbr & unsigned num func with printed chars return value
-// error handling
+// error handling?
+// tester: throw the output to a file, compare the outputs (python?)
+// with C assert look check the return values
 static void	cnv(const char *format, int *printed_chars, va_list args)
 {
 	if (*format == 'c')
@@ -24,10 +25,9 @@ static void	cnv(const char *format, int *printed_chars, va_list args)
 	else if (*format == 'p')
 		*printed_chars += print_ptr(va_arg(args, uintptr_t));
 	else if (*format == 'd' || *format == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1);
+		*printed_chars += print_int(va_arg(args, int));
 	else if (*format == 'u')
-		// putnbr modify to print unsigned only
-		ft_putnbr_fd(va_arg(args, unsigned int), 1);
+		*printed_chars += print_uint(va_arg(args, unsigned int));
 	else if (*format == 'x')
 		*printed_chars += print_hex(va_arg(args, unsigned int), 1);
 	else if (*format == 'X')
@@ -36,7 +36,6 @@ static void	cnv(const char *format, int *printed_chars, va_list args)
 		*printed_chars += print_char('%');
 }
 
-// retval: no_read chars OR EOF on error
 int	ft_printf(const char *format, ...)
 {
 	va_list	arg_list;
@@ -71,7 +70,9 @@ int main()
 	ft_printf("hexadecimal lowercase: %x\n", 42);
 	ft_printf("hexadecimal uppercase: %x\n", 42);
 	ft_printf("decimal: %d\n", 42);
-	ft_printf("integer: %u\n", 42);
+	ft_printf("integer: %i\n", 42);
+	ft_printf("unsigned int: %u\n", -42);
+	printf("og unsigned int: %i\n", -42);
 	ft_printf("pointer: %p\n", 42);
 	return 0;
 }
