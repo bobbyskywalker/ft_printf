@@ -64,8 +64,8 @@ int	print_hex(int arg, int case_p)
 	} 
 	else if (arg == INT_MIN)
 	{
-		write(1, "-2147483648", 11);
-		return 11;
+		write(1, "80000000", 8);
+		return 8;
 	}
 	if (arg < 0)
 	{

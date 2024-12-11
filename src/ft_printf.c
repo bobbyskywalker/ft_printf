@@ -1,7 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarbacz <agarbacz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,6 +12,7 @@
 #include "../includes/printf.h"
 #include "../lib/libft/libft.h"
 
+// TODO: moving the arg in arg list 
 // error handling?
 // tester: throw the output to a file, compare the outputs (python?)
 // with C assert look check the return values
@@ -62,17 +62,43 @@ int	ft_printf(const char *format, ...)
 	return (printed_chars);
 }
 // debug compilation
-// cc -Wall -Wextra -Werror ft_printf.c print_hex.c print_ptr.c  ../lib/libft/libft.a -o tescik
+// cc -Wall -Wextra -Werror assert(ft_printf.c print_hex.c print_ptr.c  ../lib/libft/libft.a -o tescik
 int main()
 {
-	ft_printf("single char: %c\n", 'A');
-	ft_printf("string: %s\n", "Forty-two");
-	ft_printf("hexadecimal lowercase: %x\n", 42);
-	ft_printf("hexadecimal uppercase: %x\n", 42);
-	ft_printf("decimal: %d\n", 42);
-	ft_printf("integer: %i\n", 42);
-	ft_printf("unsigned int: %u\n", -42);
-	printf("og unsigned int: %i\n", -42);
-	ft_printf("pointer: %p\n", 42);
+	int n = 42;
+	//basic tests
+	printf("BASIC TESTS:\n");
+	assert(ft_printf("single char: %c\n", 'A') == printf("single char: %c\n", 'A'));
+	assert(ft_printf("string: %s\n", "Forty-two") == printf("string: %s\n", "Forty-two"));
+	assert(ft_printf("hexadecimal lowercase: %x\n", 44382) == printf("hexadecimal lowercase: %x\n", 44382));
+	assert(ft_printf("hexadecimal uppercase: %x\n", 42) == printf("hexadecimal uppercase: %x\n", 42));
+	assert(ft_printf("decimal: %d\n", 42) == printf("decimal: %d\n", 42));
+	assert(ft_printf("integer: %i\n", 42) == printf("integer: %i\n", 42));
+	assert(ft_printf("unsigned int: %u\n", -42) == printf("unsigned int: %u\n", -42));
+	assert(ft_printf("pointer: %p\n", &n) == printf("pointer: %p\n", &n));
+	assert(ft_printf("percent sign: %%%%\n") == printf("percent sign: %%%%\n"));
+	printf("PASS\n\n");
+	//integer over- underflow cases
+	//int max
+	printf("INT MAX tests:\n");
+	assert(ft_printf("hexadecimal lowercase: %x\n", INT_MAX) == printf("hexadecimal lowercase: %x\n", INT_MAX));
+	assert(ft_printf("hexadecimal uppercase: %x\n", INT_MAX) == printf("hexadecimal uppercase: %x\n", INT_MAX));
+	assert(ft_printf("decimal: %d\n", INT_MAX) == printf("decimal: %d\n", INT_MAX));
+	assert(ft_printf("integer: %i\n", INT_MAX) == printf("integer: %i\n", INT_MAX));
+	assert(ft_printf("unsigned int: %u\n", INT_MAX) == printf("unsigned int: %u\n", INT_MAX));
+	printf("PASS\n\n");
+	//int min
+	printf("INT MIN tests:\n");
+	assert(ft_printf("hexadecimal lowercase: %x\n", INT_MIN) == printf("hexadecimal lowercase: %x\n", INT_MIN));
+	assert(ft_printf("hexadecimal uppercase: %x\n", INT_MIN) == printf("hexadecimal uppercase: %x\n", INT_MIN));
+	assert(ft_printf("decimal: %d\n", INT_MIN) == printf("decimal: %d\n", INT_MIN));
+	assert(ft_printf("integer: %i\n", INT_MIN) == printf("integer: %i\n", INT_MIN));
+	assert(ft_printf("unsigned int: %u\n", INT_MIN) == printf("unsigned int: %u\n", INT_MIN));
+	printf("PASS\n\n");
+
+	//multiple arguments
+	printf("MULTIPLE ARGS tests:\n");
+	assert(ft_printf("I CAME %s in the!", "42nd") == printf("I CAME %s in the!", "42nd"));
+	printf("PASS\n\n");
 	return 0;
 }
