@@ -12,10 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-// TODO: moving the arg in arg list 
-// error handling?
-// tester: throw the output to a file, compare the outputs (python?)
-// with C assert look check the return values
 static void	cnv(const char *format, int *printed_chars, va_list args)
 {
 	if (*format == 'c')
