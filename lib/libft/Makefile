@@ -21,11 +21,11 @@ BOBJECTS = $(BONUS_SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar -rc $(NAME) $(OBJECTS)
+	ar rcs $(NAME) $(OBJECTS)
 	$(MAKE) clean
 
 bonus: $(OBJECTS) $(BOBJECTS)
-	ar -rc $(NAME) $(OBJECTS) $(BOBJECTS)
+	ar rcs $(NAME) $(OBJECTS) $(BOBJECTS)
 	$(MAKE) clean
 
 clean:

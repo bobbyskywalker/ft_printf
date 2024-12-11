@@ -1,13 +1,25 @@
-#include "../includes/printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_nums.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarbacz <agarbacz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 12:18:42 by agarbacz          #+#    #+#             */
+/*   Updated: 2024/12/11 13:16:44 by agarbacz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int print_int(int nb)
+#include "../includes/ft_printf.h"
+
+int	print_int(int nb)
 {
 	char	arr[11];
 	int		i;
-    int     is_minus;
+	int		is_minus;
 
 	i = 10;
-    is_minus = 0;
+	is_minus = 0;
 	arr[i--] = '\0';
 	if (nb == 0)
 		arr[i--] = '0';
@@ -17,7 +29,7 @@ int print_int(int nb)
 			return (write(1, "-2147483648", 11));
 		nb = -nb;
 		write(1, "-", 1);
-        is_minus = 1;
+		is_minus = 1;
 	}
 	while (nb > 0)
 	{
@@ -27,7 +39,7 @@ int print_int(int nb)
 	return (write(1, &arr[i + 1], 10 - i - 1) + is_minus);
 }
 
-int print_uint(unsigned int nb)
+int	print_uint(unsigned int nb)
 {
 	char	arr[11];
 	int		i;
@@ -36,10 +48,10 @@ int print_uint(unsigned int nb)
 	arr[i--] = '\0';
 	if (nb == 0)
 		return (write(1, "0", 1));
-    while (nb > 0)
-    {
-        arr[i--] = (nb % 10) + '0';
-        nb /= 10;   
-    }
+	while (nb > 0)
+	{
+		arr[i--] = (nb % 10) + '0';
+		nb /= 10;
+	}
 	return (write(1, &arr[i + 1], 10 - i - 1));
 }

@@ -1,13 +1,25 @@
-#include "../includes/printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_str.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarbacz <agarbacz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 12:18:54 by agarbacz          #+#    #+#             */
+/*   Updated: 2024/12/11 13:17:03 by agarbacz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int print_char(char c)
+#include "../includes/ft_printf.h"
+
+int	print_char(char c)
 {
-    return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
-int print_str(char *str)
+int	print_str(char *str)
 {
-    if (!str)
-        return (write(1, "(null)", 6));
-    return (write(1, str, ft_strlen(str)));
+	if (!str)
+		return (write(1, "(null)", 6));
+	return (write(1, str, ft_strlen(str)));
 }
